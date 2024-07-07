@@ -5,6 +5,6 @@ build:
 
 run:
   web: 
-    command: npm start
+    web: perfume-front-nextjs
   backend: 
-    command: flask run
+    backend: flask-backend
