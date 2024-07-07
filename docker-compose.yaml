@@ -1,0 +1,31 @@
+# place this docker-compose in the root dir and place both frontend 
+# and backend dirs in the root dir
+# root_dir
+# /perfume-front-nextjs
+# /flask-backend
+# |---docker-compose.yaml
+
+services:
+  backend:
+    build:
+      context: ./flask-backend
+      dockerfile: ./Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./perfume-front-nextjs
+      dockerfile: ./Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
