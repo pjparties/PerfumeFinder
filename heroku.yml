@@ -1,31 +1,10 @@
-# place this docker-compose in the root dir and place both frontend 
-# and backend dirs in the root dir
-# root_dir
-# /perfume-front-nextjs
-# /flask-backend
-# |---docker-compose.yaml
+build:
+  docker:
+    web: ./perfume-front-nextjs/Dockerfile # Define the path to the Dockerfile for the frontend
+    backend: ./flask-backend/Dockerfile    # Define the path to the Dockerfile for the backend
 
-services:
-  backend:
-    build:
-      context: ./flask-backend
-      dockerfile: ./Dockerfile
-    ports:
-      - "5000:5000"
-    networks:
-      - app-network
-
-  frontend:
-    build:
-      context: ./perfume-front-nextjs
-      dockerfile: ./Dockerfile
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
+run:
+  web: 
+    command: npm start --prefix perfume-front-nextjs # Command to start your frontend service
+  backend: 
+    command: python flask-backend/app.py # Command to start your backend service (adjust if needed)
