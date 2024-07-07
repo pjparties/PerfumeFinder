@@ -5,6 +5,6 @@ build:
 
 run:
   web: 
-    command: npm start --prefix perfume-front-nextjs # Command to start your frontend service
+    command: npm start
   backend: 
-    command: python flask-backend/app.py # Command to start your backend service (adjust if needed)
+    command: flask run
